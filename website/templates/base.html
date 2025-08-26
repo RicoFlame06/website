@@ -1,0 +1,64 @@
+<!-- templates/base.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}My App{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <nav class="sidebar">
+        <ul>
+            <li class="nav-link">
+                <a href="" class="logo">
+                    <span class="icon"><i class=""></i></span>
+                    <span class="text">Logo</span>
+                </a>
+            </li>
+
+            <li class="nav-link">
+                <a href="{{ url_for('todolist') }}">
+                    <span class="icon"><i class="fas fa-list-check"></i></span>
+                    <span class="text nav-text">To-Do-List</span>
+                </a>
+            </li>
+
+            <li class="nav-link">
+                <a href="">
+                    <span class="icon"><i class="fas fa-calendar-alt"></i></span>
+                    <span class="text nav-text">Calandar</span>
+                </a>
+            </li>
+
+            <li class="nav-link">
+                <a href="">
+                    <span class="icon"><i class="fas fa-cloud-sun"></i></span>
+                    <span class="text nav-text">Weather</span>
+                </a>
+            </li>
+
+            <li class="nav-link">
+                <a href="">
+                    <span class="icon"><i class="fas fa-gear"></i></span>
+                    <span class="text nav-text">Settings</span>
+                </a>
+            </li>
+
+            <li class="nav-link">
+                <a href="{{ url_for('login') }}">
+                    <span class="icon"><i class="fas fa-right-from-bracket"></i></span>
+                    <span class="text nav-text">Logout</span>
+                </a>
+            </li>
+        </ul>
+        
+    </nav>
+
+    <!-- Main content -->
+    <div class="main-content">
+        {% block content %}
+        <!-- This is where page-specific content goes -->
+        {% endblock %}
+    </div>
+</body>
+</html>

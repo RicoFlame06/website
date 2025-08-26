@@ -1,0 +1,267 @@
+/* Reset default browser margin, padding and set box-sizing to border-box for easier sizing */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Center the login container vertically and horizontally on the page */
+body, html {
+  height: 100%;               /* Full height for flex centering */
+  margin: 0;                  /* Remove default margin */
+  display: flex;              /* Use flexbox layout */
+  justify-content: center;    /* Center horizontally */
+  align-items: center;        /* Center vertically */
+  background-color: #1d1d1d;  /* Page background color (pinkish) */
+  font-family: 'Poppins', sans-serif;  /* Apply Poppins font globally */
+  width: 100%;
+
+}
+
+/* Style the white login box container */
+.login-container {
+  background-color: rgb(37, 37, 37);           /* White background for the form */
+  padding: 50px 50px;                /* Space inside the container */
+  border-radius: 20px;               /* Rounded corners */
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+  width: 100%;                      /* Responsive width */
+  max-width: 400px;                 /* Max width to prevent it from getting too wide */
+  box-sizing: border-box;           /* Include padding/border in width */
+  color: #ffffff;
+}
+
+/* Center and space the form heading */
+.login-container h1 {
+    text-align: center;    /* Center the heading text */
+    padding: 20px;         /* Space above and below the heading */
+}
+
+/* Container for input and icon, relative positioning to place icon */
+.input-icon {
+  position: relative;
+  margin-bottom: 10px;     /* Space below each input field */
+}
+
+/* Style the icon inside input */
+.input-icon i {
+  position: absolute;          /* Position relative to .input-icon */
+  top: 50%;                   /* Vertically center the icon */
+  left: 12px;                 /* Distance from left edge */
+  transform: translateY(-50%); /* Adjust to exact center vertically */
+  color: #999;                /* Light grey color for icon */
+  font-size: 16px;            /* Icon size */
+}
+
+/* Style the input fields */
+.input-icon input {
+  width: 100%;                     /* Full width inside container */
+  padding: 12px 12px 12px 40px;   /* Extra left padding to make room for icon */
+  border: 1.5px solid #ccc;        /* Light grey border */
+  border-radius: 20px;             /* Rounded edges on inputs */
+  font-size: 16px;                 /* Text size */
+  box-sizing: border-box;          /* Include padding and border in size */
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;  /* Smooth focus effect */
+}
+
+/* Focus style when user clicks or tabs into input */
+.input-icon input:focus {
+  border-color: #007BFF;           /* Blue border */
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.3); /* Soft blue glow */
+  outline: none;                   /* Remove default outline */
+}
+
+/* Placeholder text styling inside inputs */
+input::placeholder {
+  color: #aaa;                    /* Light grey placeholder */
+}
+
+/* Style for checkbox container and label */
+.checkbox-group {
+  margin-bottom: 20px;            /* Space below checkbox section */
+  font-size: 15px;                /* Text size for label */
+  color: #ffffff;
+  display: flex;                  /* Align checkbox and text horizontally */
+  align-items: center;            /* Vertically center */
+  gap: 2px;                      /* Space between checkbox and label */
+}
+
+/* Style the checkbox itself */
+.checkbox-group input[type="checkbox"] {
+  width: 12px;                  /* Size of checkbox */
+  height: 13px;
+  cursor: pointer;              /* Cursor shows clickable */
+}
+
+
+
+
+/* Style for the "Forgot Password" link */
+.forgot-password a {
+    color: #e23c97;            /* Pink color matching the theme */
+    text-decoration: none;     /* Remove underline */
+    font-size: 14px;           /* Smaller font size */
+}
+
+/* Hover effect on the link */
+.forgot-password a:hover {
+    color: #e41e8b;            /* Pink color matching the theme */
+}
+
+/* Clicked (active) effect on the link */
+.forgot-password a:active {
+  transform: scale(0.98);      /* Slight shrink on click */
+}
+
+/* Style the login button */
+button[type="submit"] {
+  width: 100%;                  /* Full width button */
+  padding: 15px;                /* Vertical padding for height */
+  background-color: #e23c97;   /* Pink background matching page */
+  color: white;                 /* White text */
+  font-size: 16px;              /* Button text size */
+  font-weight: bold;            /* Bold text */
+  border: none;                 /* Remove default border */
+  border-radius: 20px;          /* Rounded button */
+  cursor: pointer;              /* Pointer cursor on hover */
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth hover and press effects */
+  margin-bottom: 12px;            /* Space below checkbox section */
+  margin-top: 12px;            /* Space below checkbox section */
+
+
+}
+
+/* Hover effect for button */
+button[type="submit"]:hover {
+  background-color: #d82587;   /* Darker pink when hovering */
+}
+
+/* Pressed effect when button is clicked */
+button[type="submit"]:active {
+  transform: scale(0.98);      /* Slightly shrink button */
+}
+
+
+
+.register a {
+  color: #a3a3a3;
+    text-decoration: none;     /* Remove underline */
+    font-size: 14px;           /* Smaller font size */
+
+}
+
+/* Hover effect on the link */
+.register a:hover {
+  color: #ffffff;              /* Darker pink on hover */
+}
+
+/* Clicked (active) effect on the link */
+.register a:active {
+  transform: scale(0.98);      /* Slight shrink on click */
+}
+
+
+.login a {
+    color: #a3a3a3;
+    text-decoration: none;     /* Remove underline */
+    font-size: 14px;           /* Smaller font size */
+
+}
+
+/* Hover effect on the link */
+.login a:hover {
+  color: #ffffff;              /* Darker pink on hover */
+}
+
+/* Clicked (active) effect on the link */
+.login a:active {
+  transform: scale(0.98);      /* Slight shrink on click */
+}
+
+/* Reusable CS */
+
+.sidebar .text{
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--text-color);
+}
+
+
+/* Dashboard sidebar */
+.sidebar{
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 75px;
+  z-index: 1;
+  padding-top: 10px;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1); 
+  background-color: rgb(37, 37, 37);        
+  transition: 0.6s ease;
+  overflow-x: hidden;   
+}
+
+.sidebar:hover{
+  width: 250px;
+  transition: 0.6s ease;
+}
+
+.sidebar ul{
+  position: relative;
+  height: 97vh;
+}
+
+.sidebar ul li{
+  list-style: none;
+  margin: 5px 0;
+}
+
+.sidebar ul li:hover{
+  background-color: #3b3b3b;  
+  transition: 0.6s ease;
+}
+
+.sidebar ul li a{
+  position: relative;
+  display: flex;
+  white-space: nowrap;
+  text-decoration: none;
+  color: white;
+}
+
+
+.sidebar ul li .logo{
+  margin-bottom: 80px;
+}
+
+.sidebar ul li .logo .text{
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.sidebar ul li:last-child{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+.sidebar ul li a .icon{
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 75px;
+  height: 60px;
+  font-size: 22px;
+}
+
+.sidebar ul li a .text{
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 60px;
+  font-size: 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  font-weight: 500;
+}
