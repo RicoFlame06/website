@@ -18,8 +18,33 @@
 {% block title %}To-Do List{% endblock %}
 
 {% block content %}
-    
+    <div class="todolist-container">
+
+        <form action="/add" method="POST">
+            <header>
+                To-Do List
+            </header>
+
+            <div class="input-icon">
+                <input type="text" name="task" id="task" placeholder="Enter Task">
+                <button type="submit">Add</button>
+            </div>
+        </form>
+
+        {%if tasks%}
+            <ul>
+                {% for task in tasks %}
+                    <li>{{ task[1] }}</li> <!-- assuming task[1] is the 'task' column -->
+                {% endfor %}
+            </ul>
+            {% else %}
+                <p>No tasks yet.</p>
+            {% endif %}
+
+    </div>
 {% endblock %}
+
+
 
     
 </body>

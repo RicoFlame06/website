@@ -8,7 +8,7 @@ app = Flask(__name__)
 app.secret_key = 'your_secret_key'  # Needed for session
 
 
-# Creates user database
+# Creates databases
 def database():
     con = sqlite3.connect('users.db')
     cur = con.cursor()
@@ -19,8 +19,20 @@ def database():
                 password TEXT NOT NULL
                 )       
             ''')
+    
+    cur.execute('''
+            CREATE TABLE IF NOT EXISTS tasks (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                task TEXT NOT NULL,
+                user_id INTEGER NOT NULL,
+                FOREIGN KEY (user_id) REFERENCES users(id)
+                )       
+            ''')
+    
     con.commit()
     con.close()
+    
+
     
     
 @app.route('/')
@@ -49,6 +61,8 @@ def register():
         except sqlite3.IntegrityError:
             flash("Email already registered")
             return redirect(url_for('register'))
+        
+        
     return render_template('register.html')
 
 
@@ -85,12 +99,55 @@ def dashboard():
 
     return render_template('dashboard.html', email=session['email'])  # You’ll make this file next
 
-@app.route('/to-do-list')
-def todolist():
+@app.route('/todo_list')
+def todo_list():
     if 'user_id' not in session:
-        return redirect(url_for('to-do-list'))
+        return redirect(url_for('login'))
 
-    return render_template('to-do-list.html', email=session['email'])  # You’ll make this file next
+
+    user_id = session.get('user_id')
+    
+    con = sqlite3.connect('users.db')
+    cur = con.cursor()
+    cur.execute("SELECT * FROM tasks WHERE user_id = ?", (user_id,))
+    tasks = cur.fetchall()
+    con.close()
+
+    return render_template('to-do-list.html', email=session['email'], tasks=tasks)  # You’ll make this file next
+
+
+
+@app.route('/add', methods=["GET", "POST"])
+def add_task():
+
+    if request.method == 'POST':
+        task = request.form['task']
+        user_id = session.get('user_id')
+        
+
+        if not task:
+            return redirect(url_for('todo_list'))
+        
+        # Inserts user input into the database
+        try:
+            con = sqlite3.connect('users.db')
+            cur = con.cursor()
+            cur.execute("INSERT INTO tasks (task, user_id) VALUES (?, ?)", (task, user_id))
+            con.commit()
+            con.close()
+            return redirect(url_for('todo_list'))
+  # ✅ Redirect to to do list
+
+        except sqlite3.IntegrityError:
+            flash("Invalid task")
+            return redirect(url_for('todo_list'))
+        
+        
+    return redirect(url_for('todo_list'))
+
+
+
+
 
 
 @app.route('/logout')
