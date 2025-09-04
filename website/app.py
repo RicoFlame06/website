@@ -109,7 +109,7 @@ def todo_list():
     
     con = sqlite3.connect('users.db')
     cur = con.cursor()
-    cur.execute("SELECT * FROM tasks WHERE user_id = ?", (user_id,))
+    cur.execute("SELECT id, task FROM tasks WHERE user_id = ?", (user_id,))
     tasks = cur.fetchall()
     con.close()
 
@@ -146,7 +146,28 @@ def add_task():
     return redirect(url_for('todo_list'))
 
 
+@app.route('/delete/<int:task_id>', methods=["GET", "POST"])
+def delete_task(task_id):
+    
+    if request.method == 'POST':
+        user_id = session.get('user_id')
+    
+        # Inserts user input into the database
+        try:
+            con = sqlite3.connect('users.db')
+            cur = con.cursor()
+            cur.execute("DELETE FROM tasks WHERE id = ? AND user_id = ?", (task_id, user_id))
+            con.commit()
+            con.close()
+            return redirect(url_for('todo_list'))
+  # ✅ Redirect to to do list
 
+        except sqlite3.IntegrityError:
+            flash("Invalid task")
+            return redirect(url_for('todo_list'))
+        
+        
+    return redirect(url_for('todo_list'))   
 
 
 
